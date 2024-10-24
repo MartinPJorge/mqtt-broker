@@ -1,0 +1,13 @@
+{
+    "alumna1": "Lucía Sánnchez Carpio",
+    "alumna2": "Carmén Díaz Núñez",
+    "ack_tcp_dst_port": "",
+    "broker_ip": "",
+    "qos_grafana": 10,
+    "id_grafana": "",
+    "columna_dibujada": "",
+    "request_ack_types": [10,10],
+    "campo_json": "",
+    "pub_x": 10,
+    "pub_xm5": 10
+}
