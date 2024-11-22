@@ -5,8 +5,7 @@
 entregas=$1 # path to DIR with ONLY ZIPs of entregas
 
 # Create CSV with corrections
-echo "student,grupo,ack_tcp_dst_port,broker_ip,qos_grafana,id_grafana,columna_dibujada,request_ack_types,campo_json,pub_x,pub_xm5,total"
-> notas.csv
+echo "student,grupo,ack_tcp_dst_port,broker_ip,qos_grafana,id_grafana,columna_dibujada,request_ack_types,campo_json,pub_x,pub_xm5,total" > notas.csv
 
 
 # Put there just the files avoiding folder recursion
