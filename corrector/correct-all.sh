@@ -90,9 +90,15 @@ for submission in `ls /tmp/clean-entregas`; do
 
     # Serie temporal
     serie=0
-    for f in `ls "$group_dir"/serie-temporal*`; do
-        serie=1
-    done
+    ls "$group_dir"/serie-temporal* 2&> /dev/null # check if exists
+    exists=$?
+    if [[ $exists -eq 0 ]]; then
+        for f in `ls "$group_dir"/serie-temporal*`; do
+            serie=1
+        done
+    else
+        serie=0
+    fi
     total=$(( total + serie ))
 
 

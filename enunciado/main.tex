@@ -79,7 +79,7 @@ las componentes que trabajaremos:
     \centering
 \begin{tikzpicture}
     \node[draw,rectangle] (sensor) at (0,0)
-        {Sensor};
+        {sensor};
     \node[draw,rectangle] (script)
         at ($(sensor)+(0,-1)$)
         {\texttt{reporter.sh}};
@@ -99,7 +99,7 @@ las componentes que trabajaremos:
         align=center]
         (server)
         at ($(client)+(2.5,0)$)
-        {broker\\EMQX};
+        {broker\\emqx};
     \node[draw,rectangle,fill=gray!30]
         (datasource)
         at ($(server)+(2.5,0)$)
@@ -107,7 +107,7 @@ las componentes que trabajaremos:
     \node[draw,rectangle,fill=gray!30]
         (grafana)
         at ($(datasource)-(0,1)$)
-        {Grafana};
+        {grafana};
 
     \draw[arrows=<->] (sensor.south)
         -- (script.north);
@@ -120,12 +120,12 @@ las componentes que trabajaremos:
     \draw[arrows=<->] (client.east)
         --
         node[midway,above]
-        {PUB}
+        {pub}
         (server.west);
     \draw[arrows=<->] (server.east)
         --
         node[midway,above]
-        {SUB}
+        {sub}
         (datasource.west);
     \draw[arrows=<->] (datasource.south)
         --
@@ -134,7 +134,7 @@ las componentes que trabajaremos:
 
 
 \end{tikzpicture}
-\caption{Escenario de la práctica.}
+\caption{escenario de la práctica.}
 \label{fig:escenario}
 \end{figure}
 
