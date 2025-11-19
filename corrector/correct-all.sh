@@ -5,33 +5,33 @@
 entregas=$1 # path to DIR with ONLY ZIPs of entregas
 
 # Create CSV with corrections
-echo "student,grupo,ack_tcp_dst_port,broker_ip,qos_grafana,id_grafana,columna_dibujada,request_ack_types,campo_json,pub_x,pub_xm5,total" > notas.csv
+echo "student,grupo,ack_tcp_dst_port,broker_ip,qos_grafana,id_grafana,columna_dibujada,request_ack_types,campo_json,pub_x,pub_xm5,serie_temporal,total" > notas.csv
 
 
 # Put there just the files avoiding folder recursion
 mkdir /tmp/clean-entregas
 
-for entrega in `ls $entregas`; do
-    # UNZIP submited LAB
-    out_zip=/tmp/${entrega::-4}
-    unzip $entregas/$entrega -d $out_zip 
-
-    # Create correction DIR
-    clean_out=/tmp/clean-entregas/${entrega::-4}
-    mkdir $clean_out
-
-    # Copy the JSONs, PCAPNG and LOGs
-    for ext in `echo json pcapng log jpeg png`; do
-        for file in `find $out_zip -name *$ext`; do
-            # Get filename: https://stackoverflow.com/a/32372307
-            fname=`echo "$file" | sed "s/.*\///"`
-            cp $file $clean_out/$fname
-        done
-    done
-
-    # Copy the vitals signs dataset
-    cp Human_vital_signs_R.csv $clean_out
-done
+##for entrega in `ls $entregas`; do
+##    # UNZIP submited LAB
+##    out_zip=/tmp/${entrega::-4}
+##    unzip $entregas/$entrega -d $out_zip 
+##
+##    # Create correction DIR
+##    clean_out=/tmp/clean-entregas/${entrega::-4}
+##    mkdir $clean_out
+##
+##    # Copy the JSONs, PCAPNG and LOGs
+##    for ext in `echo json pcapng log jpeg png`; do
+##        for file in `find $out_zip -name *$ext`; do
+##            # Get filename: https://stackoverflow.com/a/32372307
+##            fname=`echo "$file" | sed "s/.*\///"`
+##            cp $file $clean_out/$fname
+##        done
+##    done
+##
+##    # Copy the vitals signs dataset
+##    cp Human_vital_signs_R.csv $clean_out
+##done
 
 
 
@@ -90,15 +90,12 @@ for submission in `ls /tmp/clean-entregas`; do
 
     # Serie temporal
     serie=0
-    ls "$group_dir"/serie-temporal* 2&> /dev/null # check if exists
-    exists=$?
-    if [[ $exists -eq 0 ]]; then
-        for f in `ls "$group_dir"/serie-temporal*`; do
-            serie=1
-        done
+    if [ -f "$group_dir"/serie-temporal* ]; then
+        serie=1
     else
         serie=0
     fi
+    echo -e "\tserie_temporal: $serie"
     total=$(( total + serie ))
 
 
